@@ -1,0 +1,18 @@
+Basic Commands
+
+#RDP
+xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:ip_address /u:Administrator /p:'password'
+
+#SSH
+chmod -600 deployment_key.txt
+ssh -i deployment_key.txt user@ip_address
+
+#SMB
+smbclient //IP_ADDRESS/SHARE
+-U user
+-p port
+# to download share:
+smbget -R smb://IP_ADDRESS/SHARE
+
+#TCPDump
+sudo tcpdump port # -A
