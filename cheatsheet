@@ -20,6 +20,14 @@ sudo tcpdump port # -A
 
 
 
+Brute-Forcing
+#Hydra
+hydra -l USERNAME -P /usr/share/wordlists/rockyou.txt IP_ADDRESS -t THREAD_COUNT PROTOCOL_NAME
+-s PORT (for non-default port numbers)
+-d to show debugging info
+
+
+
 Enumeration
 
 #SMB
