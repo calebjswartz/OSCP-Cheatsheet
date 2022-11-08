@@ -1,5 +1,8 @@
 Basic Commands
 
+#Python
+python3 -m http.server PORT
+
 #RDP
 xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:ip_address /u:Administrator /p:'password'
 
@@ -29,6 +32,9 @@ hydra -l USERNAME -P /usr/share/wordlists/rockyou.txt IP_ADDRESS -t THREAD_COUNT
 
 
 Enumeration
+
+#Nmap
+nmap -sn ADDRESSRANGE
 
 #SMB
 enum4linux OPTIONS IP_ADDRESS
@@ -67,10 +73,16 @@ export TERM=xterm
 stty raw -echo; fg
 
 
+
 Privesc
 
 #GTFOBins
 https://gtfobins.github.io
+
+#Linux
+sudo -l
+find / -user root -perm -4000 -exec ls -ldb {} \; > /tmp/ckprm 2>/dev/null
+#world-writable files: /tmp, /dev/shm,/var/lock, /run/lock
 
 
 
