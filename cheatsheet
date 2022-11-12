@@ -102,6 +102,7 @@ find / -perm -o x -type d 2>/dev/null
 #dev tools and supported languages
 find / -name perl* -type f 2>/dev/null (gcc, python)
 strings BINARY
+export PATH=$PATH:/place/with/the/file
 
 #Windows
 #Priv2Admin
