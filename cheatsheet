@@ -7,7 +7,7 @@ python3 -m http.server PORT
 xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:ip_address /u:Administrator /p:'password'
 
 #SSH
-chmod -600 deployment_key.txt
+chmod 600 deployment_key.txt
 ssh -i deployment_key.txt user@ip_address
 
 #SMB
@@ -43,6 +43,7 @@ Enumeration
 
 #Nmap
 nmap -sn ADDRESSRANGE
+nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP
 
 #SMB
 enum4linux OPTIONS IP_ADDRESS
@@ -100,7 +101,7 @@ find / -perm -u=s -type f 2>/dev/null
 find / -perm -o x -type d 2>/dev/null
 #dev tools and supported languages
 find / -name perl* -type f 2>/dev/null (gcc, python)
-
+strings BINARY
 
 #Windows
 #Priv2Admin
