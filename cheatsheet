@@ -104,6 +104,7 @@ find / -perm -o x -type d 2>/dev/null
 find / -name perl* -type f 2>/dev/null (gcc, python)
 strings BINARY
 export PATH=$PATH:/place/with/the/file
+getcap -r / 2>/dev/null (check for capabilities on binaries)
 
 #Windows
 #Priv2Admin
