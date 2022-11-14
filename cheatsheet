@@ -32,6 +32,9 @@ wmic product get name,version,vendor - list installed software and versions
 
 
 Brute-Forcing
+#fcrackzip
+fcrackzip -b -v -u file.zip (to brute force)
+fcrackzip -D -p /usr/share/wordlists/rockyou.txt -u file.zip (dictionary) 
 #Hydra
 hydra -l USERNAME -P /usr/share/wordlists/rockyou.txt IP_ADDRESS -t THREAD_COUNT PROTOCOL_NAME
 -s PORT (for non-default port numbers)
