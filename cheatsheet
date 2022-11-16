@@ -106,11 +106,14 @@ find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u
 #find world executable folders:
 find / -perm -o x -type d 2>/dev/null
 #dev tools and supported languages
-find / -name perl* -type f 2>/dev/null (gcc, python)
+find / -name perl* 2>/dev/null (gcc, python)
 strings BINARY
 export PATH=$PATH:/place/with/the/file
 getcap -r / 2>/dev/null (check for capabilities on binaries)
 cat /etc/crontab
+cat /etc/exports (NFS configuration)
+showmount -e IP_ADDRESS
+
 
 #Windows
 #Priv2Admin
