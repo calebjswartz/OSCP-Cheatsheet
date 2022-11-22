@@ -39,6 +39,7 @@ fcrackzip -D -p /usr/share/wordlists/rockyou.txt -u file.zip (dictionary)
 hydra -l USERNAME -P /usr/share/wordlists/rockyou.txt IP_ADDRESS -t THREAD_COUNT PROTOCOL_NAME
 -s PORT (for non-default port numbers)
 -d to show debugging info
+sudo hydra <Username/List> <Password/List> <IP> <Method> "<Path>:<RequestBody>:<IncorrectVerbiage>"
 
 
 
