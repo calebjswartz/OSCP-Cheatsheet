@@ -1,27 +1,33 @@
-Basic Commands
+# Basic Commands
 
-#Python
+### Python
+
 python3 -m http.server PORT
 
-#RDP
+### RDP
+
 xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:ip_address /u:Administrator /p:'password'
 
-#SSH
+### SSH
+
 chmod 600 deployment_key.txt
 ssh -i deployment_key.txt user@ip_address
 
-#SMB
-smbclient //IP_ADDRESS/SHARE
+### SMB
+
+`smbclient //IP_ADDRESS/SHARE`
 -U user
 -p port
 (username anonymous and no password for anonymous login)
-# to download share:
-smbget -R smb://IP_ADDRESS/SHARE
+to download share:
+`smbget -R smb://IP_ADDRESS/SHARE`
 
-#TCPDump
-sudo tcpdump port # -A
+### TCPDump
 
-#Windows
+`sudo tcpdump port # -A`
+
+### Windows
+
 sc qc - get info about a service. See unquoted service paths.
 sc stop/start - stop and start services.
 icacls - check permissions.
