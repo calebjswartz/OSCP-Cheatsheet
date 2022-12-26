@@ -58,17 +58,14 @@ to download share:
 ### Nmap
 `nmap -sn ADDRESSRANGE`  
 `nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse MACHINE_IP`  
+Windows default TTL is 128. Linux is something in 64 range. Ping can be used for OS detection.
 
 ### SMB
 `smbclient -L IP_ADDRESS` 
-`enum4linux OPTIONS IP_ADDRESS`
--U get userlist  
--M get machine list  
--N get namelist dump (different from -U and-M)  
--S get sharelist  
--P get password policy information  
--G get group and member list  
--a all of the above (full basic enumeration)  
+-N for no password
+`enum4linux -a IP_ADDRESS`
+`smbmap -H IP_ADDRESS`
+`put a` to check for write access
 
 
 
