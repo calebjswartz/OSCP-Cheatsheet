@@ -131,7 +131,14 @@ dev tools and supported languages
 ### Windows
 Priv2Admin  
 https://github.com/gtworek/Priv2Admin
+https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html
 
+`whoami /priv`
+`net user`  
+`net local` 
+`net user USERNAME`  
+Check for patches:  
+`wmic qfe get Caption,Description,HotFixID,InstalledOn`
 Leftover credentials from unattended installations:   
 `C:\Unattend.xml`  
 `C:\Windows\Panther\Unattend.xml`  
