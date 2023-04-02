@@ -66,6 +66,9 @@ Windows default TTL is 128. Linux is something in 64 range. Ping can be used for
 `enum4linux -a IP_ADDRESS`
 `smbmap -H IP_ADDRESS`
 `put a` to check for write access
+Find hostname:
+`ping -a IP_ADDRESS`
+`nbtstat -A IP_ADDRESS`
 
 
 
