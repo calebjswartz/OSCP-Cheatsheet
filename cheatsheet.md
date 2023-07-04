@@ -169,6 +169,7 @@ View saved credentials:
 `cmdkey /list`  
 ( to use creds )  
 `runas /savecred /user:admin cmd.exe`  
+`runas.exe /netonly /user:<domain>\<username> cmd.exe`  
 Search registry for passwords:  
 `reg query HKLM /f password /t REG_SZ /s`  
 
